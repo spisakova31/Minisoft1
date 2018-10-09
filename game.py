@@ -1,4 +1,6 @@
 import tkinter
+from ball import Ball, BallIcon
+from house import House
 
 class Game:
     def __init__(self):
@@ -10,9 +12,10 @@ class Game:
         self.canvas = tkinter.Canvas(width = self.width, height = self.height, bg='white')
         self.drawPlayground(None)
         self.canvas.pack()
+
+        self.canvas.bind('<Button-1>',self.clicked) # Button-3 – pravé tlačidlo
         tkinter.mainloop()
-
-
+        
     def drawPlayground(self, task):
         margin_left = 50
 ##        margin_top = 100
@@ -37,5 +40,8 @@ class Game:
         self.canvas.create_rectangle(0, 0, self.width, self.height, fill='white')
         self.drawPlayground(None)
         self.canvas.pack()
+
+    def clicked(self, event):
+        print('klikol ', event)
 
 g = Game()
