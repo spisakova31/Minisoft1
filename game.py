@@ -1,6 +1,7 @@
 import tkinter
 from ball import Ball, BallIcon
-from house import House
+from house import House, HouseIcon
+from flag import Flag, FlagIcon
 
 class Game:
     def __init__(self):
@@ -18,7 +19,6 @@ class Game:
         
     def drawPlayground(self, task):
         margin_left = 50
-##        margin_top = 100
 
         self.canvas.create_text(self.width//2, 50, font="Times 18", text='ahoj ja som zadanie')
         
@@ -31,7 +31,8 @@ class Game:
 
         self.canvas.create_rectangle(0, self.height, self.width, self.height-30, fill='red')
         self.canvas.create_text(margin_left, self.height - 10, font="Times 18", text=self.level)
-
+        
+        
     def check(self):
         self.level += 1
         self.reload()
