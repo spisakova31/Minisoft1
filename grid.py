@@ -18,11 +18,11 @@ class Grid:
 
         self.objects = []
 
-        if self.o_type == 'b':
+        if self.o_type == 'Ball':
             self.icon = BallIcon(self.x, self.y, self.o_w, self.o_h, 0, 0)
-        if self.o_type == 'h':
+        if self.o_type == 'House':
             self.icon = HouseIcon(self.x, self.y, self.o_w, self.o_h, 0, 0)
-        if self.o_type == 'f':
+        if self.o_type == 'Flag':
             self.icon = FlagIcon(self.x, self.y, self.o_w, self.o_h, 0, 0)
 
         self.addObject()
@@ -35,13 +35,13 @@ class Grid:
 
     def addObject(self):
         r, c = self.icon.r, self.icon.c
-        if self.o_type == 'b':
+        if self.o_type == 'Ball':
             self.objects.append(Ball(self.x, self.y, self.o_w, self.o_h, r, c))
 
-        if self.o_type == 'h':
+        if self.o_type == 'House':
             self.objects.append(House(self.x, self.y, self.o_w, self.o_h, r, c))
 
-        if self.o_type == 'f':
+        if self.o_type == 'Flag':
             self.objects.append(Flag(self.x, self.y, self.o_w, self.o_h, r, c))
 
         self.icon.increase_c()

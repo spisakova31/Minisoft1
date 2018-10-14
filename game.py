@@ -14,23 +14,25 @@ class Game:
         self.height = 600
         self.level = 1
         self.score = 0
-        self.tasks = self.create_tasks()
-
+        self.trial = 0
         self.margin_left = 50
-        self.canvas = tkinter.Canvas(width = self.width, height = self.height, bg='white')
-
-        self.grid = Grid(50, 220, 800, 280, 'b', self)
-        self.palette = Palette(self.canvas, 3, self, self.width - 100, self.height / 2 - 40)
         self.user_input = 0
-        self.ok_button = tkinter.Button(text='OK?', command=self.check, bg='lime')
-        self.cursor_color = self.palette.colors[0]
+        self.grid = None
 
-        self.draw_playground()
-        self.canvas.pack()
+        self.canvas = tkinter.Canvas(width=self.width, height=self.height, bg='white')
+        self.tasks = self.create_tasks()
+        self.palette = None
+        self.cursor_color = None
+        self.load_level()
+
+        self.ok_button = tkinter.Button(text='OK?', command=self.check, bg='lime')
+        self.entry = tkinter.Entry(textvariable=self.user_input)
 
         self.canvas.bind('<Button-1>',self.left_button_clicked) # Button-1 – lave tlačidlo
         self.canvas.bind('<Button-3>',self.right_button_clicked) # Button-3 – pravé tlačidlo
 
+        self.draw_playground()
+        self.canvas.pack()
         tkinter.mainloop()
 
     def draw_footer(self):
@@ -40,21 +42,32 @@ class Game:
     
     def draw_playground(self):
         self.draw_footer()
-        self.canvas.create_rectangle(0, 0, self.width, 200, fill='peachpuff', outline='salmon')
-        self.canvas.create_text(self.margin_left, 70, font="Times 16", text=self.tasks[self.level].get_text(), anchor="sw")
+        self.canvas.create_rectangle(0, 0, self.width, 135, fill='peachpuff', outline='salmon')
+        self.canvas.create_text(self.margin_left, 70, font="Times 16", text=self.tasks[self.level-1].get_text(), anchor="sw")
         
          #toto bude asi treba pretypovat na cislo potom
-        entry1 = tkinter.Entry(textvariable=self.user_input)
-        entry1.place(x=self.margin_left, y=100, height=30, width = 100)
-
+        self.entry.place(x=self.margin_left, y=100, height=30, width = 100)
         self.ok_button.place(x=self.margin_left + 105, y=100, height=30)
-        self.canvas.create_rectangle(0, 200, self.width, self.height - 30, fill='grey97', outline='grey97')
+        self.canvas.create_rectangle(0, 135, self.width, self.height - 30, fill='grey97', outline='grey97')
         self.grid.draw(self.canvas)
         self.palette.draw()
 
     def check(self):
-        self.level += 1
-        self.reload()
+        self.trial += 1
+        if True:
+            self.level += 1
+            if self.trial == 1:
+                self.score += 1
+            if self.level > 8:
+                self.game_done()
+            else:
+                self.trial = 0
+                self.load_level()
+                self.reload()
+
+        else:
+            self.trial += 1
+            self.canvas.create_text(self.margin_left + 105 + 50, 130, font="Times 18", text='NESPRÁVNE', anchor="sw", fill='red')
 
     def reload(self):
         self.canvas.delete('all')
@@ -62,11 +75,9 @@ class Game:
         self.draw_playground()
         self.canvas.pack()
 
-
     def left_button_clicked(self, event):
         self.grid.left_button_clicked(event)
         self.palette.left_button_clicked(event)
-        #tu este bude volanie pre kliknutie do palety farieb
         self.reload()
 
     def right_button_clicked(self, event):
@@ -94,5 +105,17 @@ class Game:
         tasks.append(Task(8, 'Flag', random.randint(4, 5)))
         return tasks
 
+    def load_level(self):
+        self.grid = Grid(50, 220, 800, 280, self.tasks[self.level - 1].get_obj(), self)
+        self.palette = self.palette = Palette(self.canvas, self.tasks[self.level-1].get_count_colors(), self, self.width - 80, self.height / 2 - 40)
+        self.cursor_color = self.cursor_color = self.palette.colors[0]
 
+    def game_done(self):
+        self.canvas.delete('all')
+        self.canvas.create_rectangle(0, 0, self.width, self.height, fill='palegreen')
+        self.entry.destroy()
+        self.ok_button.destroy()
+        self.canvas.create_text(self.width / 2, self.height / 2, font="Times 25",
+                                text='Podarilo sa ti úspešne prejsť všetky levely :)\n Na prvý pokus sa ti podarilo splniť ' + str(
+                                    self.score) + ' levelov.')
 g = Game()
