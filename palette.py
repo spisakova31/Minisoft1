@@ -27,7 +27,7 @@ class Palette:
             self.draw()
 
         def is_clicked(self, click):
-            return math.sqrt(((click.x - self.x) ** 2) + ((click.y - self.y) ** 2)) < self.r
+            return self.x - self.w/2 < click.x and self.x + self.w/2 > click.x and self.y - self.w/2 < click.y and self.y + self.w/2 > click.y
 
 
     class Eraser:
