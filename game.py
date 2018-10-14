@@ -27,6 +27,8 @@ class Game:
 
         self.ok_button = tkinter.Button(text='OK?', command=self.check, bg='lime')
         self.entry = tkinter.Entry(textvariable=self.user_input)
+        self.entry.pack()
+        self.ok_button.pack()
 
         self.canvas.bind('<Button-1>',self.left_button_clicked) # Button-1 – lave tlačidlo
         self.canvas.bind('<Button-3>',self.right_button_clicked) # Button-3 – pravé tlačidlo
@@ -44,7 +46,7 @@ class Game:
         self.draw_footer()
         self.canvas.create_rectangle(0, 0, self.width, 135, fill='peachpuff', outline='salmon')
         self.canvas.create_text(self.margin_left, 70, font="Times 16", text=self.tasks[self.level-1].get_text(), anchor="sw")
-        
+
          #toto bude asi treba pretypovat na cislo potom
         self.entry.place(x=self.margin_left, y=100, height=30, width = 100)
         self.ok_button.place(x=self.margin_left + 105, y=100, height=30)
@@ -54,7 +56,9 @@ class Game:
 
     def check(self):
         self.trial += 1
-        if True:
+        print(str(self.entry.get()) + ' = ' + str(self.tasks[self.level-1].get_result()))
+        result = self.tasks[self.level-1].get_result()
+        if self.entry.get() == str(result) and self.grid.all_are_colored() and self.grid.get_number_of_objects() == result and self.grid.all_are_different():
             self.level += 1
             if self.trial == 1:
                 self.score += 1
@@ -63,6 +67,7 @@ class Game:
             else:
                 self.trial = 0
                 self.load_level()
+                self.entry.delete(0, 'end')
                 self.reload()
 
         else:

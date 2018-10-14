@@ -17,11 +17,11 @@ class Task:
 
     def get_result(self):
         if self.obj == 'Ball':
-            return self.num_colours
+            return self.count_colours
         elif self.obj == 'House':
-            return math.pow(self.num_colours, 2)
+            return self.count_colours ** 2
         else:
-            return math.pow(self.num_colours, 3)
+            return self.count_colours ** 3
 
     def get_obj(self):
         return self.obj
