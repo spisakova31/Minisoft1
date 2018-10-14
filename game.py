@@ -12,7 +12,7 @@ class Game:
         super().__init__()
         self.width = 1000
         self.height = 600
-        self.level = 3
+        self.level = 1
         self.score = 0
         self.tasks = self.create_tasks()
 
@@ -78,7 +78,7 @@ class Game:
 
     def create_tasks(self):
         tasks = list()
-        tasks.append(Task(1, 'Ball',random.randint(1, 4)))
+        tasks.append(Task(1, 'Ball', random.randint(1, 4)))
         tasks.append(Task(2, 'Ball', random.randint(4, 6)))
         tasks.append(Task(3, 'House', 2))
         tasks.append(Task(4, 'House', 3))
