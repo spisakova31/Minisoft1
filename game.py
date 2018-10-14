@@ -1,5 +1,6 @@
 import tkinter
 import random
+import time
 from ball import Ball, BallIcon
 from house import House, HouseIcon
 from flag import Flag, FlagIcon
@@ -64,6 +65,10 @@ class Game:
             if self.level > 8:
                 self.game_done()
             else:
+                self.canvas.create_text(self.margin_left + 105 + 50, 130, font="Times 18",
+                                        text='SUPER', anchor="sw", fill='green')
+                self.canvas.after(1000)
+                # time.sleep(1000)
                 self.trial = 0
                 self.load_level()
                 self.entry.delete(0, 'end')
