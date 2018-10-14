@@ -93,6 +93,7 @@ class Grid:
             if obj.is_clicked(click):
                 obj.clicked(click).set_color(self.game.get_coursor_color())
 
+
     def right_button_clicked(self, event):
         for i in range(0, len(self.objects)):
             if (self.objects[i].is_clicked(event)):
@@ -111,6 +112,13 @@ class Grid:
             if not obj.is_colored():
                 return False
         return True
+
+    def get_number_of_colored(self):
+        count = 0
+        for obj in self.objects:
+            if obj.is_colored():
+                count += 1
+        return count
 
     def get_number_of_objects(self):
         #vrati pocet vsetkych objektov

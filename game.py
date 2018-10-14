@@ -18,6 +18,7 @@ class Game:
         self.margin_left = 50
         self.user_input = 0
         self.grid = None
+        self.edit_num = 0
 
         self.canvas = tkinter.Canvas(width=self.width, height=self.height, bg='white')
         self.tasks = self.create_tasks()
@@ -77,6 +78,8 @@ class Game:
         self.canvas.create_rectangle(0, 0, self.width, self.height, fill='white')
         self.draw_playground()
         self.canvas.pack()
+        self.entry.delete(0, 'end')
+        self.entry.insert(0, self.grid.get_number_of_colored())
 
     def left_button_clicked(self, event):
         self.grid.left_button_clicked(event)
@@ -121,4 +124,18 @@ class Game:
         self.canvas.create_text(self.width / 2, self.height / 2, font="Times 25",
                                 text='Podarilo sa ti úspešne prejsť všetky levely :)\n Na prvý pokus sa ti podarilo splniť ' + str(
                                     self.score) + ' levelov.')
+
+    def increase_edit(self):
+        print('som tu. edit = ' + str(self.edit_num))
+        print('pretyp: ' + str(int(self.edit_num)))
+        self.edit_num = int(self.edit_num) + 1
+        print('po pripocitani 1: ' + str(self.edit_num))
+        self.entry.delete(0, 'end')
+        self.entry.insert(0, self.edit_num)
+
+    def decrease_edit(self):
+        self.edit_num = int(self.edit_num) - 1
+        self.entry.delete(0, 'end')
+        self.entry.insert(0, self.edit_num)
+
 g = Game()
