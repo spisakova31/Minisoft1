@@ -40,8 +40,6 @@ class Wall:
     def __init__(self, x, y, w, h, color='white', border='black'):
         self.angle = 40
         self.set_position(x, y, w, h)
-        
-        
         self.color = color
         self.border = border
 

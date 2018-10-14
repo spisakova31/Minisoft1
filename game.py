@@ -46,8 +46,6 @@ class Game:
         self.draw_footer()
         self.canvas.create_rectangle(0, 0, self.width, 135, fill='peachpuff', outline='salmon')
         self.canvas.create_text(self.margin_left, 70, font="Times 16", text=self.tasks[self.level-1].get_text(), anchor="sw")
-
-         #toto bude asi treba pretypovat na cislo potom
         self.entry.place(x=self.margin_left, y=100, height=30, width = 100)
         self.ok_button.place(x=self.margin_left + 105, y=100, height=30)
         self.canvas.create_rectangle(0, 135, self.width, self.height - 30, fill='grey97', outline='grey97')
