@@ -26,7 +26,7 @@ class Game:
         self.cursor_color = None
         self.load_level()
 
-        self.ok_button = tkinter.Button(text='OK?', command=self.check, bg='lime')
+        self.ok_button = tkinter.Button(text='OK?', command=self.check, bg='springgreen')
         self.entry = tkinter.Entry(textvariable=self.user_input)
         self.entry.pack()
         self.ok_button.pack()
@@ -71,7 +71,7 @@ class Game:
 
         else:
             self.trial += 1
-            self.canvas.create_text(self.margin_left + 105 + 50, 130, font="Times 18", text='NESPRÁVNE', anchor="sw", fill='red')
+            self.canvas.create_text(self.margin_left + 105 + 50, 130, font="Times 18", text='NESPRÁVNE :( SKÚS TO EŠTE RAZ', anchor="sw", fill='red')
 
     def reload(self):
         self.canvas.delete('all')
