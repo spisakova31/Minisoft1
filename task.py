@@ -1,6 +1,6 @@
 from ball import Ball
 from house import House
-#from flag import Flag
+from flag import Flag
 
 class Task:
 
@@ -10,7 +10,7 @@ class Task:
         self.num_colours = num_colours
 
     def create_text(self):
-        words = {Ball: ('lôpt', 'jedna nebola vyfarbená'), House: ('domčekov', 'jeden nebol vyfarbený'), House: ('vlajok', 'jedna nebola vyfarbená')}
+        words = {Ball: ('lôpt', 'jedna nebola vyfarbená'), House: ('domčekov', 'jeden nebol vyfarbený'), Flag: ('vlajok', 'jedna nebola vyfarbená')}
         return ('Koľko najviac rôznych ' + words[type(self.obj)][0] + ' vieš vytvoriť tak, aby ani ' + words[type(self.obj)][1] +
                 ' rovnako ako ostatné? Použi všetky farby na palete vpravo.')
 

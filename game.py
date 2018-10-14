@@ -15,7 +15,6 @@ class Game:
         self.canvas.pack()
 
         self.canvas.bind('<Button-1>',self.clicked) # Button-3 – pravé tlačidlo
-        tkinter.mainloop()
         
     def drawPlayground(self, task):
         margin_left = 50
@@ -45,4 +44,3 @@ class Game:
     def clicked(self, event):
         print('klikol ', event)
 
-g = Game()
