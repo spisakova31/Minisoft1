@@ -104,4 +104,23 @@ class Grid:
                     self.recalculate_after_add()
                 self.set_new_positions()
                 return
-                    
+
+    def all_are_colored(self):
+        #vrati True ak su vsetky vyfarbene
+        for obj in self.objects:
+            if not obj.is_colored():
+                return False
+        return True
+
+    def get_number_of_objects(self):
+        #vrati pocet vsetkych objektov
+        return len(self.objects)
+
+    def all_are_different(self):
+        #vrati True ak su vsetky rozidelne
+        for obj1 in self.objects:
+            for obj2 in self.objects:
+                if obj1 != obj2:
+                    if obj1.equals(obj2):
+                        return False
+        return True

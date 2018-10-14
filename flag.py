@@ -16,7 +16,12 @@ class Stripe:
     def set_position(self, x, y, w, h):
         self.x, self.y = x, y
         self.w, self.h = w, h
-        
+
+    def is_colored(self):
+        return self.color != 'white'
+
+    def equals(self, other):
+        return self.color == other.color     
 
 # -------------------------------------------------------------------------------------------------------------------------        
 
@@ -58,7 +63,12 @@ class Flag:
         for i in range(len(self.stripes)):
             stripe = self.stripes[i]
             stripe.set_position(self.x, self.y + i*self.stripe_height, self.w, self.stripe_height)
-            
+
+    def is_colored(self):
+        return self.stripes[0].is_colored() and self.stripes[1].is_colored() and self.stripes[2].is_colored()
+
+    def equals(self, other):
+        return self.stripes[0].equals(other.stripes[0]) and self.stripes[1].equals(other.stripes[1]) and self.stripes[2].equals(other.stripes[2])
 
 # --------------------------------------------------------------------------------------------------------------------------
             

@@ -35,9 +35,14 @@ class Ball:
             self.rad = h // 2
        
         self.r, self.c = r, c
-        self.x, self.y = self.grid_x + self.c*self.w + self.c*self.gap + self.rad, self.grid_y + self.r*self.h + self.r*self.gap + self.rad
-        
+        self.x, self.y = self.grid_x + self.c*self.w + self.c*self.gap + self.rad, self.grid_y + self.r*self.h + self.r*self.gap + self.rad 
 
+    def is_colored(self):
+        return self.color != 'white'
+
+    def equals(self, other):
+        return self.color == other.color
+    
 # --------------------------------------------------------------------------
 
 class BallIcon(Ball):

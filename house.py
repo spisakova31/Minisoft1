@@ -27,6 +27,12 @@ class Roof:
     def set_position(self, x, y, w, h):
         self.x, self.y = x, y
         self.w, self.h = w, h
+
+    def is_colored(self):
+        return self.color != 'white'
+
+    def equals(self, other):
+        return self.color == other.color
         
 # ---------------------------------------------------------------------------------------------------------------
 
@@ -54,6 +60,12 @@ class Wall:
         self.y = y 
         self.w = w - 2*self.margin
         self.h = h - abs(tan(radians(self.angle))) * (w/2)
+
+    def is_colored(self):
+        return self.color != 'white'
+
+    def equals(self, other):
+        return self.color == other.color
 
 # -----------------------------------------------------------------------------------------------------------------------------        
 
@@ -91,7 +103,12 @@ class House:
         
         self.wall.set_position(self.x, self.y, self.w, self.h)
         self.roof.set_position(self.x, self.y, self.w, self.h)
-        
+
+    def is_colored(self):
+        return self.roof.is_colored() or self.wall.is_colored()
+
+    def equals(self, other):
+        return self.wall.equals(other.wall) and self.roof.equals(other.roof)
 
 # -----------------------------------------------------------------------------------------        
 
