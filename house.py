@@ -105,7 +105,7 @@ class House:
         self.roof.set_position(self.x, self.y, self.w, self.h)
 
     def is_colored(self):
-        return self.roof.is_colored() or self.wall.is_colored()
+        return self.roof.is_colored() and self.wall.is_colored()
 
     def equals(self, other):
         return self.wall.equals(other.wall) and self.roof.equals(other.roof)
