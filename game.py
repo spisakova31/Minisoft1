@@ -20,11 +20,12 @@ class Game:
         self.canvas = tkinter.Canvas(width = self.width, height = self.height, bg='white')
 
         self.grid = Grid(50, 220, 800, 280, 'b', self)
-        self.palette = Palette(self.canvas, 3)
+        self.palette = Palette(self.canvas, 3, self, self.width - 100, self.height / 2 - 40)
         self.user_input = 0
         self.ok_button = tkinter.Button(text='OK?', command=self.check, bg='lime')
+        self.cursor_color = self.palette.colors[0]
 
-        self.draw_playground(None)
+        self.draw_playground()
         self.canvas.pack()
 
         self.canvas.bind('<Button-1>',self.left_button_clicked) # Button-1 – lave tlačidlo
@@ -37,8 +38,9 @@ class Game:
         self.canvas.create_text(self.margin_left, self.height, font="Times 18", text='Level: ' + str(self.level), anchor="sw")
         self.canvas.create_text(self.width - 150, self.height, font='Times 18', text='Score: ' + str(self.score), anchor="sw")
     
-    def draw_playground(self, task):
+    def draw_playground(self):
         self.draw_footer()
+        self.canvas.create_rectangle(0, 0, self.width, 200, fill='peachpuff', outline='salmon')
         self.canvas.create_text(self.margin_left, 70, font="Times 16", text=self.tasks[self.level].get_text(), anchor="sw")
         
          #toto bude asi treba pretypovat na cislo potom
@@ -48,7 +50,7 @@ class Game:
         self.ok_button.place(x=self.margin_left + 105, y=100, height=30)
         self.canvas.create_rectangle(0, 200, self.width, self.height - 30, fill='grey97', outline='grey97')
         self.grid.draw(self.canvas)
-        self.palette.draw(self.width - 100, self.height / 2 - 40)
+        self.palette.draw()
 
     def check(self):
         self.level += 1
@@ -57,11 +59,13 @@ class Game:
     def reload(self):
         self.canvas.delete('all')
         self.canvas.create_rectangle(0, 0, self.width, self.height, fill='white')
-        self.draw_playground(None)
+        self.draw_playground()
         self.canvas.pack()
+
 
     def left_button_clicked(self, event):
         self.grid.left_button_clicked(event)
+        self.palette.left_button_clicked(event)
         #tu este bude volanie pre kliknutie do palety farieb
         self.reload()
 
@@ -73,8 +77,10 @@ class Game:
         return self.canvas
 
     def get_coursor_color(self):
-        #tento return bude vracat aktualne zvolenu farbu kurzora
-        return 'red'
+        return self.cursor_color
+
+    def set_cursor_color(self, color):
+        self.cursor_color = color
 
     def create_tasks(self):
         tasks = list()
