@@ -58,7 +58,7 @@ class Game:
         self.trial += 1
         print(str(self.entry.get()) + ' = ' + str(self.tasks[self.level-1].get_result()))
         result = self.tasks[self.level-1].get_result()
-        if self.entry.get() == str(result) and self.grid.all_are_colored() and self.grid.get_number_of_objects() == result and self.grid.all_are_different():
+        if self.entry.get() == str(result):
             self.level += 1
             if self.trial == 1:
                 self.score += 1
@@ -144,3 +144,4 @@ class Game:
         self.entry.insert(0, self.edit_num)
 
 g = Game()
+a = input()
