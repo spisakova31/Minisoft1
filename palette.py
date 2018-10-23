@@ -56,11 +56,11 @@ class Palette:
 
 
     def __init__(self, canvas, count_colors, game, x, y):
-        self.colors_palette = ['aqua', 'beige', 'black', 'blue', 'brown', 'darkblue', 'darkcyan',
+        self.colors_palette = ['aqua', 'beige', 'black', 'blue', 'darkblue', 'darkcyan',
                                'darkgrey', 'darkgreen', 'darkkhaki', 'darkorchid',  'darksalmon', 'fuchsia',
-                               'gold', 'green', 'indigo', 'khaki', 'lightblue', 'lightgreen', 'lightgrey',
-                               'lime', 'magenta', 'maroon', 'olive', 'orange', 'pink', 'purple', 'violet',
-                               'red', 'silver', 'yellow']
+                               'gold', 'springgreen', 'indigo', 'khaki', 'lightblue', 'lightgreen', 'red', 'yellow',
+                               'lime', 'darkorange2', 'maroon', 'olive', 'orange', 'pink', 'purple', 'violet']
+            
         self.count_colors = count_colors
         self.game = game
         self.canvas = canvas
